@@ -13,7 +13,7 @@ namespace EventManager
         {
             context.Database.EnsureCreated();
 
-            if (context.User.Any())
+            if (context.Users.Any())
             {
                 return;
             }
@@ -28,7 +28,7 @@ namespace EventManager
             };
 
 
-            context.User.AddRange(users);
+            context.Users.AddRange(users);
 
             var events = new Event[]
             {
@@ -44,7 +44,7 @@ namespace EventManager
             };
 
             
-            context.Event.AddRange(events);
+            context.Events.AddRange(events);
             context.SaveChanges();
         }
     }
