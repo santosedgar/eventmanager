@@ -1,4 +1,5 @@
-﻿using EventManager.Database;
+﻿using EventManager.Core.Interfaces;
+using EventManager.Database;
 using EventManager.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -9,27 +10,10 @@ using System.Threading.Tasks;
 
 namespace EventManager.Persistence
 {
-    public class EventRepository
+    public class EventRepository: Repository<Event, Guid>, IEventRepository
     {
-        private readonly EventManagerContext _context;
-
-        public EventRepository(EventManagerContext context)
+        public EventRepository(EventManagerContext context) : base(context)
         {
-            this._context = context;
-        }
-
-        public virtual async Task<EntityEntry<EventModel>> AddAsync(EventModel entity)
-        {
-            return await this._context
-                .Set<EventModel>()
-                .AddAsync(entity);
-        }
-
-        public virtual async Task<IEnumerable<EventModel>> ListAsync()
-        {
-            return await this._context
-                .Set<EventModel>()
-                .ToListAsync();
         }
     }
 }

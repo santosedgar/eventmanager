@@ -1,13 +1,15 @@
+using AutoMapper;
+using EventManager.Core.Interfaces;
 using EventManager.Database;
+using EventManager.Extensions;
+using EventManager.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 
 namespace EventManager
 {
@@ -25,6 +27,13 @@ namespace EventManager
         {
             services.AddDbContext<EventManagerContext>(options =>
                  options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IEventRepository, EventRepository>();
+            services.AddScoped<IAttendRepository, AttendRepository>();
+
+            services.AddAutoMapper(
+                typeof(RequestsToDomainMappingProfile),
+                typeof(DomainToResponseMappingProfile));
 
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory

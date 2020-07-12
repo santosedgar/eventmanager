@@ -31,7 +31,7 @@ namespace EventManager
                 try
                 {
                     var context = services.GetRequiredService<EventManagerContext>();
-                    context.Database.EnsureCreated();
+                    DbInitializer.Initialize(context);
                 }
                 catch(Exception ex)
                 {

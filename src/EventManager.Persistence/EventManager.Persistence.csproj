@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EventManager.Core\EventManager.Core.csproj" />
     <ProjectReference Include="..\EventManager.Database\EventManager.Database.csproj" />
   </ItemGroup>
 

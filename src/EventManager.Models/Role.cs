@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EventManager.Models
 {
-    public enum RoleModel
+    public enum Role
     {
         /// <summary>
         /// Regular user

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EventManager.Models
 {
-    public class RegistrationModel : IModel
+    public class Attend : IModel
     {
         public string Name { get; set; }
 
@@ -13,8 +13,8 @@ namespace EventManager.Models
 
         public string EmailAddress { get; set; }
 
-        public UserModel CreatedBy { get; set; }
+        public Guid EventId { get; set; }
          
-        public EventModel EventModel { get; set; }
+        public Event Event { get; set; }
     }
 }

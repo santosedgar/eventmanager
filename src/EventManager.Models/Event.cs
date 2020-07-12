@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EventManager.Models
 {
-    public class EventModel : IModel
+    public class Event : IModel
     {
         public string Name { get; set; }
 
@@ -16,5 +16,9 @@ namespace EventManager.Models
         public DateTime StartTime { get; set; }
 
         public DateTime EndTime { get; set; }
+
+        public Guid UserId { get; set; }
+
+        public User User { get; set; }
     }
 }
