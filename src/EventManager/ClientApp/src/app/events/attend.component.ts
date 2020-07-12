@@ -1,4 +1,6 @@
 import { Component, Inject } from '@angular/core';
+import { Attendency } from '../models/attendency';
+import { AttendService } from '../services/attend.service';
 
 @Component({
     selector: 'app-attend',
@@ -8,15 +10,20 @@ import { Component, Inject } from '@angular/core';
 export class AttendComponent {
     submitted: boolean = false;
 
-    model: any;
+    model: Attendency = new Attendency();
+    attendService: AttendService;
 
-
-    constructor() {
-
+    constructor(attendService: AttendService) {
+        this.attendService = attendService;
     }
 
-    onsubmit() {
-        alert("submit event");
+    onSubmit() {
+        alert("Attendency sent");
+        this.model.EventId = "C282E599-DFEE-4E55-E95E-08D8267E9F8D";
+        this.submitted = true;
+        this.attendService.postAttendendy(this.model).add(teardown => {
+            this.submitted = false;
+        });
     }
 
     get diagnostic() { return JSON.stringify(this.model); }
