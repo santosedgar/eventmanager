@@ -1,7 +1,7 @@
 import { BaseService } from "./base.service";
 import { Inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Subscription } from "rxjs";
+import { Subscription, Observable } from "rxjs";
 import { Attendency } from "../models/attendency";
 
 
@@ -11,7 +11,7 @@ export class AttendService extends BaseService {
         super(baseUrl, http);
     }
 
-    postAttendendy(attendency: Attendency): Subscription {
+    postAttendendy(attendency: Attendency): Observable<object> {
         return this.post("attend", attendency, true);
     }
 }

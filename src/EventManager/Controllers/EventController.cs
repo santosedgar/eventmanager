@@ -50,5 +50,16 @@ namespace EventManager.Controllers
             return Ok(result);
         }
 
+        [HttpGet("{id=guid}")]
+        [Route("attendees")]
+        public async Task<IActionResult> GetAttendees(Guid Id)
+        {
+            var events = await this._eventRepository.GetAttendeesAsync(Id);
+
+            var result = _mapper.Map<Event, EventResponse>(events);
+
+            return Ok(result);
+        }
+
     }
 }

@@ -8,8 +8,6 @@ namespace EventManager.Models.Base
 {
     public abstract class IModel
     {
-        [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid ID { get; protected set; }
     }
 }

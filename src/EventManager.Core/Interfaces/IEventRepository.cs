@@ -9,5 +9,6 @@ namespace EventManager.Core.Interfaces
 {
     public interface IEventRepository : IRepository<Event, Guid>
     {
+        Task<Event> GetAttendeesAsync(Guid Id);
     }
 }

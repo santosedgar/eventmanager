@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="row">
+        <h1 *ngIf="event"> Attendees for event: {{ event.name}} </h1>
+    </div>
+    <div class="row" style="padding-top:5px;">
+        <div class="col-12">
+            <table class="table" *ngIf="event">
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Phone number
+                        </th>
+                        <th>
+                            Email Address
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let attendee of event.attendees">
+                        <td>
+                            {{ attendee.name}}
+                        </td>
+                        <td>
+                            {{ attendee.phoneNumber }}
+                        </td>
+                        <td>
+                            {{ attendee.emailAddress}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

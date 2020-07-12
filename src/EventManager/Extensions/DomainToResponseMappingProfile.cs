@@ -13,6 +13,7 @@ namespace EventManager.Extensions
         public DomainToResponseMappingProfile()
         {
             CreateMap<Event, EventResponse>();
+            CreateMap<Attend, AttendResponse>();
         }
     }
 }

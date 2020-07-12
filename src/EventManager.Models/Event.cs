@@ -20,5 +20,7 @@ namespace EventManager.Models
         public Guid UserId { get; set; }
 
         public User User { get; set; }
+
+        public virtual ICollection<Attend> Attendees { get; set; }
     }
 }

@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { AttendComponent } from './events/attend.component';
+import { AttendListComponent } from './events/attend-list.component';
 import { EventListComponent } from './events/event-list.component';
 
 //Services
@@ -21,6 +22,7 @@ import { EventService } from './services/event.service';
     NavMenuComponent,
     HomeComponent,
     AttendComponent,
+    AttendListComponent,
     EventListComponent
   ],
   imports: [
@@ -29,7 +31,8 @@ import { EventService } from './services/event.service';
     FormsModule,
     RouterModule.forRoot([
       { path: 'attend', component: AttendComponent },
-      { path: 'events', component: EventListComponent }
+      { path: 'events', component: EventListComponent },
+      { path: 'eventsattendees', component: AttendListComponent }
     ])
   ],
   providers: [

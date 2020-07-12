@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { EventService } from "../services/event.service";
 import { EventResponse } from "../models/eventModel";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-event-list',
@@ -9,10 +10,8 @@ import { EventResponse } from "../models/eventModel";
 
 export class EventListComponent {
     public events: EventResponse[] = [];
-    eventService: EventService;
 
-    constructor(eventService: EventService) {
-        this.eventService = eventService;
+    constructor(private eventService: EventService, private router: Router) {
         this.getEvents();
     }
 
@@ -27,5 +26,9 @@ export class EventListComponent {
                     alert(error);
                 }
             );;
+    }
+
+    displayAttendees(eventId: number) {
+        this.router.navigateByUrl(`/eventsattendees?id=${eventId}`);
     }
 }

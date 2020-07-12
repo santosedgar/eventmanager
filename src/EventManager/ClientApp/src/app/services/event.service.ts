@@ -12,4 +12,9 @@ export class EventService extends BaseService {
     getEvents(): Observable<object> {
         return this.get("event", true);
     }
+
+
+    getEventAttendees(id: string) {
+        return this.get(`event/${id}`, true);
+    }
 }
