@@ -1,7 +1,6 @@
 import { Inject } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, Subscription } from "rxjs";
-import { endianness } from "os";
 
 export class BaseService {
     baseUrl: string;
@@ -29,7 +28,7 @@ export class BaseService {
             this.authenticationService.token);*/
     }
 
-    protected get(endpoint: string, allowAnonymous: boolean = true): Subscription {
+    protected get(endpoint: string, allowAnonymous: boolean = true): Observable<object> {
         let headers = new HttpHeaders();
         if (!allowAnonymous)
             this.createAuthorizationHeader(headers);
@@ -37,18 +36,10 @@ export class BaseService {
         return this.http.get(this.baseUrl + endpoint,
             {
 
-            })
-            .subscribe(
-                success => {
-                    console.log(success);
-                },
-                error => {
-                    this.handleError(error);
-                }
-            );
+            });
     }
 
-    protected post(endpoint: string, data: any, allowAnonymous: boolean = true): Subscription {
+    protected post(endpoint: string, data: any, allowAnonymous: boolean = true): Observable<object> {
         let headers = new HttpHeaders();
         if (allowAnonymous == false) {
             this.createAuthorizationHeader(headers);
@@ -57,14 +48,6 @@ export class BaseService {
         return this.http.post(this.baseUrl + endpoint, data,
             {
                 headers: headers
-            })
-            .subscribe(
-                success => {
-                    console.log(success);
-                },
-                error => {
-                    this.handleError(error);
-                }
-            );
+            });
     }
 }

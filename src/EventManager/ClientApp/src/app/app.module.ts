@@ -8,10 +8,11 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { AttendComponent } from './events/attend.component';
+import { EventListComponent } from './events/event-list.component';
 
 //Services
 import { AttendService } from './services/attend.service';
-
+import { EventService } from './services/event.service';
 
 
 @NgModule({
@@ -19,19 +20,21 @@ import { AttendService } from './services/attend.service';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    AttendComponent
+    AttendComponent,
+    EventListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'attend', component: AttendComponent }
+      { path: 'attend', component: AttendComponent },
+      { path: 'events', component: EventListComponent }
     ])
   ],
   providers: [
-    AttendService
+    AttendService,
+    EventService
   ],
   bootstrap: [AppComponent]
 })

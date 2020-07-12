@@ -18,12 +18,13 @@ export class AttendComponent {
     }
 
     onSubmit() {
-        alert("Attendency sent");
+        //TODO
         this.model.EventId = "C282E599-DFEE-4E55-E95E-08D8267E9F8D";
         this.submitted = true;
-        this.attendService.postAttendendy(this.model).add(teardown => {
-            this.submitted = false;
-        });
+        this.attendService.postAttendendy(this.model)
+            .add(teardown => {
+                this.submitted = false;
+            });
     }
 
     get diagnostic() { return JSON.stringify(this.model); }
