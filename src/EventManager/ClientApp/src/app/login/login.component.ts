@@ -26,10 +26,15 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(
                 result => {
-                    this.router.navigate(['/']);
+                    let logged = this.authenticationService.setToken(result, this.model.username);
+                    if (logged)
+                        this.router.navigate(['/']);
+                    else
+                        alert("Error login");
                 },
                 error => {
                     //login failed
+                    alert("Invalid credentials");
                     this.loading = false;
                 }
             );

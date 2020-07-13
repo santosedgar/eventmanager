@@ -27,7 +27,7 @@ export class AuthenticationService {
 
     setToken(response: any, username: string): boolean {
         //login sucessful if there is a jwt token in the response
-        let token = response.json() && response.json().accessToken;
+        let token = response.accessToken;
         if (token) {
             //set token property
             this.token = token;
@@ -38,7 +38,7 @@ export class AuthenticationService {
                     username: username,
                     user: this.getClaimsFromToken(token),
                     token: token,
-                    expiration: response.json().expiration
+                    expiration: response.expiration
                 })
             );
             this.refreshMenuItems();
@@ -111,7 +111,7 @@ export class AuthenticationService {
             this.menuItems.push(
                 {
                     "name": "Register Event",
-                    "routerLink": "/newevent"
+                    "routerLink": "/registerevent"
                 }
             );
         }

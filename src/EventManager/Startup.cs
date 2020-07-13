@@ -46,10 +46,10 @@ namespace EventManager
                 typeof(RequestsToDomainMappingProfile),
                 typeof(DomainToResponseMappingProfile));
 
+            services.AddAuthorization();
+
             services
                 .AddControllersWithViews();
-
-            services.AddAuthorization();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -81,6 +81,8 @@ namespace EventManager
 
             app.UseRouting();
 
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -100,6 +102,8 @@ namespace EventManager
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+            //app.UseAuthentication();
         }
 
         private void configureAuthentication(IServiceCollection services)

@@ -3,6 +3,6 @@ export class EventResponse {
     public Name: string;
     public Description: string;
     public Location: string;
-    public StartTime: string;
-    public EndTime: string;
+    public StartTime: Date;
+    public EndTime: Date;
 }

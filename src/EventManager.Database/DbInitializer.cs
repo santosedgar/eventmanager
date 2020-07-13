@@ -26,25 +26,8 @@ namespace EventManager
                     RoleId = Role.EventCreator
                 }
             };
-
-
             context.Users.AddRange(users);
 
-            var events = new Event[]
-            {
-                new Event
-                {
-                    Name = "Event 1",
-                    Description= "description 1",
-                    Location= "location 1",
-                    StartTime =  DateTime.Now.AddDays(-1),
-                    EndTime = DateTime.Now.AddDays(1),
-                    User = users.First()
-                }
-            };
-
-            
-            context.Events.AddRange(events);
             context.SaveChanges();
         }
     }

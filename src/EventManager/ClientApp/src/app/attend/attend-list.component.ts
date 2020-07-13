@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { EventService } from "../services/event.service";
-import { EventResponse } from "../models/eventModel";
+import { EventResponse } from "../models/eventResponse";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -29,7 +29,7 @@ export class AttendListComponent {
                     this.event = success as EventResponse;
                 },
                 error => {
-                    //alert(error);
+                    alert("There was an error");
                 }
             );;
     }

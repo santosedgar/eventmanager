@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using EventManager.Core.Interfaces;
+using EventManager.Helpers.AuthProvider;
 using EventManager.Models;
+using EventManager.Request;
 using EventManager.Response;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -25,19 +27,23 @@ namespace EventManager.Controllers
             this._mapper = mapper;
         }
 
-        //TODO
-        //[Authorize("Bearer")]
+        [Authorize("Bearer")]
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Event request)
+        public async Task<IActionResult> Post([FromBody] EventRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.Values);
 
-            await _eventRepository.AddAsync(request);
+            CurrentUser user = CurrentUser.GetCurrentUser(User);
+
+            var eventModel = _mapper.Map<EventRequest, Event>(request);
+            eventModel.UserId = user.UserId;
+
+            await _eventRepository.AddAsync(eventModel);
 
             await _eventRepository.SaveChangesAsync();
 
-            return CreatedAtAction("Register", "Event", new { id = request.ID }, request);
+            return CreatedAtAction("Register", "Event", new { id = eventModel.ID });
         }
 
         [HttpGet]

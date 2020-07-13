@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { EventService } from "../services/event.service";
-import { EventResponse } from "../models/eventModel";
+import { EventResponse } from "../models/eventResponse";
 import { Router } from "@angular/router";
 
 @Component({
@@ -23,9 +23,13 @@ export class EventListComponent {
                     this.events = success as EventResponse[];
                 },
                 error => {
-                    alert(error);
+                    alert("There was an error");
                 }
             );;
+    }
+
+    attendToEvent(eventId: number) {
+        this.router.navigateByUrl(`/attendtoevent?id=${eventId}`);
     }
 
     displayAttendees(eventId: number) {

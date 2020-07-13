@@ -13,6 +13,7 @@ namespace EventManager.Extensions
         public RequestsToDomainMappingProfile()
         {
             CreateMap<AttendRequest, Attend>();
+            CreateMap<EventRequest, Event>();
         }
     }
 }
